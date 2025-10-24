@@ -1,5 +1,5 @@
 # Maintainer: Shuzzy <https://github.com/RealShuzzy>
-# Upstream: https://github.com/RealShuzzy/wlogout
+# Upstream: https://github.com/ArtsyMacaw/wlogout
 # Forked and customized for ShuzzyOS
 
 pkgname='wlogout-shuzzyos'
