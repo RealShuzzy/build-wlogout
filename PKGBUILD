@@ -1,28 +1,29 @@
-# Maintainer: Shuzzy <https://github.com/RealShuzzy>
-# Upstream: https://github.com/ArtsyMacaw/wlogout
-# Forked and customized for ShuzzyOS
-
+# Maintainer: Haden Collins <collinshaden@gmail.com>
+pkg='wlogout'
 pkgname='wlogout-shuzzyos'
 pkgver=1.2.2
 pkgrel=0
 pkgdesc="Logout menu for wayland"
 arch=('x86_64')
 license=("MIT")
-url="https://github.com/RealShuzzy/wlogout"
-source=("git+https://github.com/RealShuzzy/wlogout.git")
+url="https://github.com/ArtsyMacaw/wlogout"
+source=("$pkg-$pkgver.tar.gz::https://github.com/ArtsyMacaw/$pkg/releases/download/$pkgver/$pkg.tar.gz" "$pkg-$pkgver.tar.gz.sig::https://github.com/ArtsyMacaw/$pkg/releases/download/$pkgver/$pkg.tar.gz.sig")
 validpgpkeys=("F4FDB18A9937358364B276E9E25D679AF73C6D2F")
 makedepends=("meson" "git" "scdoc")
 depends=("gtk3" "gobject-introspection" "gtk-layer-shell")
+prepare() {
+    rsync -r ../custom/ $srcdir/
+}
+
 build() {
-    cd wlogout
+    cd $srcdir
     meson setup build --prefix /usr
     ninja -C build
 }
 
 package() {
-    
-    cd "$srcdir/wlogout"
     DESTDIR="$pkgdir" ninja -C build install
-    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkg/LICENSE"
 }
-md5sums=('SKIP')
+md5sums=('2d129a847cdf9aa212b834f690f86e4a'
+         'SKIP')

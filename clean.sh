@@ -1,1 +1,1 @@
-rm -rf {pkg,src,wlogout,*.pkg.tar.zst}
+rm -rf {pkg,src,wlogout*}
